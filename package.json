@@ -5,7 +5,13 @@
   "author": "elcarvalho <lessa.eric@gmail.com>",
   "license": "MIT",
   "description": "Conceitos e introdução ao Node.js",
+  "scripts": {
+    "dev": "yarn nodemon"
+  },
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }
