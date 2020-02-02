@@ -8,21 +8,40 @@ server.use(express.json());
 //Route params = /users/1
 //Request body = { nome = "Eric", email: "lessa.eric@gmail.com" }
 
-server.get('/', (req, res) => {
-  const { nome } = req.query;
+const users = ['Jack', 'Eric'];
 
-  return res.json({ message: `Hello ${nome}` });
+server.get('/users', (req, res) => {
+  return res.json(users);
 });
 
-server.get('/users/:id', (req, res) => {
-  const { id } = req.params;
-  return res.json({ message: `Buscando usuário ${id}` });
+server.get('/users/:index', (req, res) => {
+  const { index } = req.params;
+  return res.json(users[index]);
 });
 
 server.post('/users', (req, res) => {
-  const { nome, email } = req.body;
+  const { nome } = req.body;
 
-  return res.json({ message: `Nome: ${nome}, E-mail: ${email}` });
+  users.push(nome);
+
+  return res.json(users);
+});
+
+server.put('/users/:index', (req, res) => {
+  const { index } = req.params;
+  const { nome } = req.body;
+
+  users[index] = nome;
+
+  return res.json(users);
+});
+
+server.delete('/users/:index', (req, res) => {
+  const index = req.body;
+
+  users.splice(index, 1);
+
+  return res.send();
 });
 
 server.listen(3000);
